@@ -1,0 +1,10 @@
+{
+  "name": "clase",
+  "version": "1.0.0",
+  "description": "Basic JavaScript project",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "license": "ISC"
+}
