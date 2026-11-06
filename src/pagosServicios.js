@@ -11,6 +11,14 @@ function formatearMonto(monto) {
   return `$${monto.toLocaleString('es-CL')}`;
 }
 
+function mostrarServicios() {
+  console.log('=== Pago de Servicios ===\n');
+  servicios.forEach((s) => {
+    console.log(`${s.id}. ${s.nombre} (${s.empresa}) - ${formatearMonto(s.monto)}`);
+  });
+  console.log('');
+}
+
 function pagarServicio(id, saldo) {
   const servicio = servicios.find((s) => s.id === id);
 
@@ -29,4 +37,20 @@ function pagarServicio(id, saldo) {
   };
 }
 
-module.exports = { servicios, pagarServicio };
+module.exports = { servicios, mostrarServicios, pagarServicio };
+
+// Demo al ejecutar el archivo directamente
+if (require.main === module) {
+  let saldo = 40000;
+
+  mostrarServicios();
+  console.log(`Saldo disponible: ${formatearMonto(saldo)}\n`);
+
+  [1, 3, 99].forEach((id) => {
+    const resultado = pagarServicio(id, saldo);
+    console.log(resultado.ok ? `✔ ${resultado.mensaje}` : `✘ ${resultado.mensaje}`);
+    if (resultado.ok) saldo = resultado.saldoRestante;
+  });
+
+  console.log(`\nSaldo final: ${formatearMonto(saldo)}`);
+}
