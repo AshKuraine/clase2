@@ -2,4 +2,9 @@ function greet(name) {
   return `Hola, ${name}!`;
 }
 
-module.exports = { greet };
+function log(message, level = 'INFO', context = {}) {
+  let timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] [${level}] ${message} ${JSON.stringify(context)}`);
+}
+
+module.exports = { greet, log };

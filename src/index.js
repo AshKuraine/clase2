@@ -1,3 +1,3 @@
-const { greet } = require('./utils');
+const { greet, log } = require('./utils');
 
-console.log(greet('mundo'));
+log(greet('mundo'));
