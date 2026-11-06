@@ -1,5 +1,6 @@
 // Nueva pantalla: Pago de Servicios
 // Ejemplo simple para clase. Ejecutar con: node src/pagosServicios.js
+const { log } = require('./utils')
 
 const servicios = [
   { id: 1, nombre: 'Luz', empresa: 'Enel', monto: 25000 },
@@ -12,11 +13,11 @@ function formatearMonto(monto) {
 }
 
 function mostrarServicios() {
-  console.log('=== Pago de Servicios ===\n');
+  log('=== Pago de Servicios ===\n');
   servicios.forEach((s) => {
-    console.log(`${s.id}. ${s.nombre} (${s.empresa}) - ${formatearMonto(s.monto)}`);
+    log(`${s.id}. ${s.nombre} (${s.empresa}) - ${formatearMonto(s.monto)}`);
   });
-  console.log('');
+  log('');
 }
 
 function pagarServicio(id, saldo) {
@@ -44,13 +45,13 @@ if (require.main === module) {
   let saldo = 40000;
 
   mostrarServicios();
-  console.log(`Saldo disponible: ${formatearMonto(saldo)}\n`);
+  log(`Saldo disponible: ${formatearMonto(saldo)}\n`);
 
   [1, 3, 99].forEach((id) => {
     const resultado = pagarServicio(id, saldo);
-    console.log(resultado.ok ? `✔ ${resultado.mensaje}` : `✘ ${resultado.mensaje}`);
+    log(resultado.ok ? `✔ ${resultado.mensaje}` : `✘ ${resultado.mensaje}`);
     if (resultado.ok) saldo = resultado.saldoRestante;
   });
 
-  console.log(`\nSaldo final: ${formatearMonto(saldo)}`);
+  log(`\nSaldo final: ${formatearMonto(saldo)}`);
 }
