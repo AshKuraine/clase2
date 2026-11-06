@@ -60,4 +60,5 @@ if (require.main === module) {
   });
 
   log(`\nSaldo final: ${formatearMonto(saldo)}`);
+  log('=========================');
 }
