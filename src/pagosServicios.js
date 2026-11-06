@@ -37,7 +37,11 @@ function pagarServicio(id, saldo) {
   };
 }
 
-module.exports = { servicios, mostrarServicios, pagarServicio };
+function totalServicios() {
+  return servicios.reduce((suma, s) => suma + s.monto, 0);
+}
+
+module.exports = { servicios, mostrarServicios, pagarServicio, totalServicios };
 
 // Demo al ejecutar el archivo directamente
 if (require.main === module) {
@@ -53,4 +57,5 @@ if (require.main === module) {
   });
 
   console.log(`\nSaldo final: ${formatearMonto(saldo)}`);
+  console.log(`Total de todos los servicios: ${formatearMonto(totalServicios())}`);
 }

@@ -8,3 +8,14 @@ function log(message, level = 'INFO', context = {}) {
 }
 
 module.exports = { greet, log };
+
+function decimalToBinary(n) {
+  return Number(n).toString(2);
+}
+
+function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+module.exports.decimalToBinary = decimalToBinary;
+module.exports.capitalize = capitalize;
