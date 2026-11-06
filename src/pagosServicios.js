@@ -12,9 +12,10 @@ function formatearMonto(monto) {
 }
 
 function mostrarServicios() {
-  console.log('=== Pago de Servicios ===\n');
+  console.log('=== Pago de Servicios ===');
+  console.log('Selecciona uno de los siguientes servicios para consultar o realizar un pago:\n');
   servicios.forEach((s) => {
-    console.log(`${s.id}. ${s.nombre} (${s.empresa}) - ${formatearMonto(s.monto)}`);
+    console.log(`${s.id}. ${s.nombre} (${s.empresa}) - Monto a pagar: ${formatearMonto(s.monto)}`);
   });
   console.log('');
 }
@@ -23,16 +24,22 @@ function pagarServicio(id, saldo) {
   const servicio = servicios.find((s) => s.id === id);
 
   if (!servicio) {
-    return { ok: false, mensaje: 'Servicio no encontrado' };
+    return {
+      ok: false,
+      mensaje: 'No fue posible realizar el pago porque el servicio solicitado no fue encontrado.',
+    };
   }
 
   if (saldo < servicio.monto) {
-    return { ok: false, mensaje: `Saldo insuficiente para pagar ${servicio.nombre}` };
+    return {
+      ok: false,
+      mensaje: `No puedes pagar ${servicio.nombre} porque el saldo disponible no alcanza para cubrir el monto total.`,
+    };
   }
 
   return {
     ok: true,
-    mensaje: `Pago de ${servicio.nombre} realizado por ${formatearMonto(servicio.monto)}`,
+    mensaje: `El pago de ${servicio.nombre} fue realizado correctamente por ${formatearMonto(servicio.monto)}.`,
     saldoRestante: saldo - servicio.monto,
   };
 }
@@ -44,7 +51,7 @@ if (require.main === module) {
   let saldo = 40000;
 
   mostrarServicios();
-  console.log(`Saldo disponible: ${formatearMonto(saldo)}\n`);
+  console.log(`Saldo disponible para realizar pagos: ${formatearMonto(saldo)}\n`);
 
   [1, 3, 99].forEach((id) => {
     const resultado = pagarServicio(id, saldo);
@@ -52,5 +59,5 @@ if (require.main === module) {
     if (resultado.ok) saldo = resultado.saldoRestante;
   });
 
-  console.log(`\nSaldo final: ${formatearMonto(saldo)}`);
+  console.log(`\nProceso finalizado. Tu saldo disponible es: ${formatearMonto(saldo)}`);
 }
