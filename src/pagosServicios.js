@@ -6,7 +6,6 @@ const { log } = require('./utils');
 const servicios = [
   { id: 1, nombre: 'Luz', empresa: 'Enel', monto: 25000 },
   { id: 2, nombre: 'Agua', empresa: 'Aguas Andinas', monto: 12000 },
-  { id: 3, nombre: 'Internet', empresa: 'Movistar', monto: 19990 },
 ];
 
 function formatearMonto(monto) {
@@ -46,7 +45,6 @@ function pagarServicio(id, saldo) {
 
 module.exports = { servicios, mostrarServicios, pagarServicio };
 
-// Demo al ejecutar el archivo directamente
 if (require.main === module) {
   let saldo = 40000;
 
@@ -60,5 +58,4 @@ if (require.main === module) {
   });
 
   log(`\nSaldo final: ${formatearMonto(saldo)}`);
-  log('=========================');
 }
