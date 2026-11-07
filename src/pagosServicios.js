@@ -2,7 +2,6 @@
 // Ejemplo simple para clase. Ejecutar con: node src/pagosServicios.js
 
 const { log } = require('./utils');
-const { log } = require('./utils')
 
 const servicios = [
   { id: 1, nombre: 'Luz', empresa: 'Enel', monto: 25000 },
@@ -18,7 +17,6 @@ function mostrarServicios() {
   log('=== Pago de Servicios ===\n');
   servicios.forEach((s) => {
     log(`${s.id}. ${s.nombre} (${s.empresa}) - ${formatearMonto(s.monto)}`);
-    log(`${s.id}. ${s.nombre} (${s.empresa}) - ${formatearMonto(s.monto)}`);
   });
   log('');
 }
@@ -33,12 +31,6 @@ function pagarServicio(id, saldo) {
     };
   }
 
-  if (saldo < servicio.monto) {
-    return {
-      ok: false,
-      mensaje: `No puedes pagar ${servicio.nombre} porque el saldo disponible no alcanza para cubrir el monto total.`,
-    };
-  }
 
   return {
     ok: true,
@@ -58,16 +50,13 @@ if (require.main === module) {
 
   mostrarServicios();
   log(`Saldo disponible: ${formatearMonto(saldo)}\n`);
-  log(`Saldo disponible: ${formatearMonto(saldo)}\n`);
 
   [1, 3, 99].forEach((id) => {
     const resultado = pagarServicio(id, saldo);
     log(resultado.ok ? `✔ ${resultado.mensaje}` : `✘ ${resultado.mensaje}`);
-    log(resultado.ok ? `✔ ${resultado.mensaje}` : `✘ ${resultado.mensaje}`);
     if (resultado.ok) saldo = resultado.saldoRestante;
   });
 
-  log(`\nSaldo final: ${formatearMonto(saldo)}`);
   log(`\nSaldo final: ${formatearMonto(saldo)}`);
   log(`Total de todos los servicios: ${formatearMonto(totalServicios())}`);
 }
