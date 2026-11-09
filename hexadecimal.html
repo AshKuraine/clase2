@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decimal a hexadecimal</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px 20px; }
+    input { font-size: 18px; padding: 8px; width: 200px; }
+    #resultado { font-size: 22px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Decimal a hexadecimal</h1>
+  <input type="text" id="numero">
+  <p id="resultado"></p>
+  <p id="binario"></p>
+
+  <script>
+    var input = document.getElementById("numero");
+    var resultado = document.getElementById("resultado");
+    var binario = document.getElementById("binario");
+
+    input.addEventListener("input", function () {
+      var valor = input.value;
+      if (valor === "") {
+        resultado.textContent = "";
+        binario.textContent = "";
+        return;
+      }
+      var numero = parseInt(valor, 10);
+      if (isNaN(numero)) {
+        resultado.textContent = "Número no válido";
+        binario.textContent = "";
+      } else {
+        resultado.textContent = numero.toString(16).toUpperCase();
+        binario.textContent = "Binario: " + numero.toString(2);
+      }
+    });
+  </script>
+</body>
+</html>

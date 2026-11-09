@@ -1,3 +1,8 @@
-const { greet } = require('./utils');
+const { greet, log } = require('./utils');
 
-console.log(greet('mundo'));
+log(greet('mundo'));
+
+const { decimalToBinary, capitalize } = require('./utils');
+
+log(capitalize('hola'));
+log(`10 en binario es ${decimalToBinary(10)}`);
